@@ -177,6 +177,7 @@ aside {
 	border-radius: 0.5rem;
 	flex: 1;
 	width: 100%;
+	outline: none;
 }
 
 /** TAREAS LISTADO **/
