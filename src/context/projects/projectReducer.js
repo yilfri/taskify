@@ -19,6 +19,7 @@ export default (state, action) => {
 				form: false,
 				errorform: false
 			};
+		// Validate Form
 		case VALIDATE_FORM:
 			return {
 				...state,
