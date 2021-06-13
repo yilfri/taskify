@@ -13,7 +13,7 @@ const NewAccount = () => {
 	// Destructuring State.
 	const { name, email, password, confirm } = user;
 
-	// Handle Events
+	// Handle Event
 	const handleChange = (e) => {
 		setUser({
 			...user,

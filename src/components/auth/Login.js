@@ -11,7 +11,7 @@ const Login = () => {
 	// Destructuring State.
 	const { email, password } = user;
 
-	// Handle Events
+	// Handle Event
 	const handleChange = (e) => {
 		setUser({
 			...user,
