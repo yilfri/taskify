@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
-import { PROJECT_FORM, GET_PROJECT, ADD_PROJECT } from '../..//types';
+import { PROJECT_FORM, GET_PROJECT, ADD_PROJECT, VALIDATE_FORM } from '../..//types';
 import { v4 as uuidv4 } from 'uuid';
 
 const ProjectState = (props) => {
@@ -13,7 +13,8 @@ const ProjectState = (props) => {
 	];
 	const initialState = {
 		projects: [],
-		form: false
+		form: false,
+		errorform: false
 	};
 
 	// Dispatch for run actions
@@ -42,14 +43,22 @@ const ProjectState = (props) => {
 		});
 	};
 
+	const showError = () => {
+		dispatch({
+			type: VALIDATE_FORM
+		});
+	};
+
 	return (
 		<projectContext.Provider
 			value={{
 				projects: state.projects,
 				form: state.form,
+				errorform: state.errorform,
 				showForm,
 				getProjects,
-				addProject
+				addProject,
+				showError
 			}}
 		>
 			{props.children}
