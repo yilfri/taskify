@@ -8,7 +8,7 @@ const TasksList = () => {
 	const { project } = projectsContext;
 
 	// If dont have projects yet, return instruction
-	if (!project) return <h2>Select a Project</h2>;
+	if (!project) return <h2>Pick a Project</h2>;
 
 	// Distructuring actualProject
 	const [actualProjectede] = project;
