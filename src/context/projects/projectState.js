@@ -25,7 +25,7 @@ const ProjectState = (props) => {
 		project: null
 	};
 
-	// Dispatch for run actions
+	// Reducer
 	const [state, dispatch] = useReducer(projectReducer, initialState);
 
 	// Functions CRUD
