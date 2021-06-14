@@ -8,3 +8,4 @@ export const DELETE_PROJECT = 'DELETE_PROJECT';
 
 /* TYPE TASK CONTEXT */
 export const TASKS_PROJECT = 'TASKS_PROJECT';
+export const ADD_TASK = 'ADD_TASK';
