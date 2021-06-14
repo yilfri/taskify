@@ -5,13 +5,13 @@ import Task from './Task';
 const TasksList = () => {
 	// Extract project from Context
 	const projectsContext = useContext(projectContext);
-	const { project } = projectsContext;
+	const { project, deleteProject } = projectsContext;
 
 	// If dont have projects yet, return instruction
 	if (!project) return <h2>Pick a Project</h2>;
 
 	// Distructuring actualProject
-	const [actualProjectede] = project;
+	const [actualProject] = project;
 
 	const tasksProject = [
 		{ name: 'Pick Platform', state: false },
@@ -19,9 +19,15 @@ const TasksList = () => {
 		{ name: 'Pick pay services', state: false },
 		{ name: 'Pick Hosting', state: true }
 	];
+
+	// Handle Events.
+
+	const handleClickDeleteProject = (project) => {
+		deleteProject(actualProject.id);
+	};
 	return (
 		<>
-			<h2>{actualProjectede.name}</h2>
+			<h2>{actualProject.name}</h2>
 
 			<ul className="listado-tareas">
 				{tasksProject.length === 0 ? (
@@ -32,7 +38,7 @@ const TasksList = () => {
 					tasksProject.map((task) => <Task task={task} />)
 				)}
 			</ul>
-			<button type="button" className="btn btn-eliminar">
+			<button type="button" className="btn btn-eliminar" onClick={handleClickDeleteProject}>
 				Delete Project
 			</button>
 		</>

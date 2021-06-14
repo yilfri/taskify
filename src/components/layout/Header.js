@@ -4,7 +4,7 @@ const Header = () => {
 	return (
 		<div className="app-header">
 			<p className="nombre-usuario">
-				Hola <span>Juan Pablo</span>
+				Hola <span>José Lugo</span>
 			</p>
 
 			<nav className="nav-principal">
