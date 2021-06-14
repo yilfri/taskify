@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import projectContext from '../../context/projects/projectContext';
 import Task from './Task';
 
 const TasksList = () => {
+	// Extract project from Context
+	const projectsContext = useContext(projectContext);
+	const { project } = projectsContext;
+
+	// If dont have projects yet, return instruction
+	if (!project) return <h2>Select a Project</h2>;
+
+	// Distructuring actualProject
+	const [actualProjectede] = project;
+
 	const tasksProject = [
 		{ name: 'Pick Platform', state: false },
 		{ name: 'Pick colors', state: true },
@@ -10,7 +21,7 @@ const TasksList = () => {
 	];
 	return (
 		<>
-			<h2>Project: E-Commerce</h2>
+			<h2>{actualProjectede.name}</h2>
 
 			<ul className="listado-tareas">
 				{tasksProject.length === 0 ? (
