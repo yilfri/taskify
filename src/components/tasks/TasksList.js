@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import projectContext from '../../context/projects/projectContext';
 import TaskContext from '../../context/tasks/taskContext';
 import Task from './Task';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const TasksList = () => {
 	// Extract project from Context.
@@ -33,11 +34,17 @@ const TasksList = () => {
 						<p>You don't have Tasks</p>
 					</li>
 				) : (
-					tasksproject.map((task) => <Task key={task.id} task={task} />)
+					<TransitionGroup>
+						{tasksproject.map((task) => (
+							<CSSTransition key={task.id} timeout={200} classNames="tarea">
+								<Task task={task} />
+							</CSSTransition>
+						))}
+					</TransitionGroup>
 				)}
 			</ul>
 			<button type="button" className="btn btn-eliminar" onClick={handleClickDeleteProject}>
-				Delete Project
+				Delete Project &times;
 			</button>
 		</>
 	);
