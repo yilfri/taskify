@@ -11,11 +11,21 @@ const Task = ({ task }) => {
 
 	// Extract Task from Context.
 	const tasksContext = useContext(TaskContext);
-	const { deleteTask, getTasks } = tasksContext;
+	const { deleteTask, getTasks, updateStateTask } = tasksContext;
 
 	const handleClickDeleteTask = (id) => {
 		deleteTask(id);
 		getTasks(actualProject.id);
+	};
+
+	const changeState = (task) => {
+		if (task.state) {
+			task.state = false;
+		} else {
+			task.state = true;
+		}
+
+		updateStateTask(task);
 	};
 
 	return (
@@ -24,11 +34,11 @@ const Task = ({ task }) => {
 
 			<div className="estado">
 				{task.state ? (
-					<button type="button" className="completo">
+					<button type="button" className="completo" onClick={() => changeState(task)}>
 						Completed
 					</button>
 				) : (
-					<button type="button" className="incompleto">
+					<button type="button" className="incompleto" onClick={() => changeState(task)}>
 						Not Completed
 					</button>
 				)}

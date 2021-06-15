@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import { TASKS_PROJECT, ADD_TASK, DELETE_TASK, VALIDATE_TASK } from '../../types';
+import { TASKS_PROJECT, ADD_TASK, DELETE_TASK, VALIDATE_TASK, STATE_TASK } from '../../types';
 
 const TaskState = (props) => {
 	const initialState = {
@@ -56,6 +56,13 @@ const TaskState = (props) => {
 		});
 	};
 
+	const updateStateTask = (task) => {
+		dispatch({
+			type: STATE_TASK,
+			payload: task
+		});
+	};
+
 	return (
 		<TaskContext.Provider
 			value={{
@@ -65,7 +72,8 @@ const TaskState = (props) => {
 				getTasks,
 				addTask,
 				validateTask,
-				deleteTask
+				deleteTask,
+				updateStateTask
 			}}
 		>
 			{props.children}
