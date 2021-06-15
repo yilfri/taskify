@@ -33,7 +33,7 @@ const TasksList = () => {
 						<p>You don't have Tasks</p>
 					</li>
 				) : (
-					tasksproject.map((task) => <Task task={task} />)
+					tasksproject.map((task) => <Task key={task.id} task={task} />)
 				)}
 			</ul>
 			<button type="button" className="btn btn-eliminar" onClick={handleClickDeleteProject}>
