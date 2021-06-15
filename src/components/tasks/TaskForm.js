@@ -9,7 +9,7 @@ const TaskForm = () => {
 
 	// Extract Task from Context.
 	const tasksContext = useContext(TaskContext);
-	const { addTask } = tasksContext;
+	const { errortask, getTasks, addTask, validateTask } = tasksContext;
 
 	// Form State
 	const [task, setTask] = useState({
@@ -28,10 +28,24 @@ const TaskForm = () => {
 	const handleSubmitNewTask = (e) => {
 		e.preventDefault();
 
+		// Check if task don't have anything
+		if (name.trim() === '') {
+			validateTask();
+			return;
+		}
+
+		// Add new task to state
 		task.projectId = actualProject.id;
 		task.state = false;
-
 		addTask(task);
+
+		// Get and filter task from actual project.
+		getTasks(actualProject.id);
+
+		// Reset form
+		setTask({
+			name: ''
+		});
 	};
 
 	const handleChangeForm = (e) => {
@@ -59,6 +73,8 @@ const TaskForm = () => {
 					<input type="submit" value="Add Task" className="btn btn-primario btn-submit btn-block" />
 				</div>
 			</form>
+
+			{errortask ? <p className="mensaje error">Ingresa un nombre a la tarea</p> : null}
 		</div>
 	);
 };

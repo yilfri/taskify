@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import TaskContext from './taskContext';
 import TaskReducer from './taskReducer';
-import { TASKS_PROJECT, ADD_TASK, DELETE_TASK } from '../../types';
+import { TASKS_PROJECT, ADD_TASK, DELETE_TASK, VALIDATE_TASK } from '../../types';
 
 const TaskState = (props) => {
 	const initialState = {
@@ -21,7 +21,8 @@ const TaskState = (props) => {
 			{ id: 13, name: 'Pick pay services', state: false, projectId: 3 },
 			{ id: 14, name: 'Pick Hosting', state: true, projectId: 4 }
 		],
-		tasksproject: null
+		tasksproject: null,
+		errortask: false
 	};
 
 	// Reducer
@@ -42,6 +43,12 @@ const TaskState = (props) => {
 		});
 	};
 
+	const validateTask = () => {
+		dispatch({
+			type: VALIDATE_TASK
+		});
+	};
+
 	const deleteTask = (id) => {
 		dispatch({
 			type: DELETE_TASK,
@@ -54,8 +61,10 @@ const TaskState = (props) => {
 			value={{
 				tasks: state.tasks,
 				tasksproject: state.tasksproject,
+				errortask: state.errortask,
 				getTasks,
 				addTask,
+				validateTask,
 				deleteTask
 			}}
 		>
