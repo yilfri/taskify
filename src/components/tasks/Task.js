@@ -11,8 +11,9 @@ const Task = ({ task }) => {
 
 	// Extract Task from Context.
 	const tasksContext = useContext(TaskContext);
-	const { deleteTask, getTasks, updateStateTask } = tasksContext;
+	const { deleteTask, getTasks, updateStateTask, saveActualTask } = tasksContext;
 
+	// Handle Events
 	const handleClickDeleteTask = (id) => {
 		deleteTask(id);
 		getTasks(actualProject.id);
@@ -26,6 +27,10 @@ const Task = ({ task }) => {
 		}
 
 		updateStateTask(task);
+	};
+
+	const selectTask = (task) => {
+		saveActualTask(task);
 	};
 
 	return (
@@ -45,7 +50,7 @@ const Task = ({ task }) => {
 			</div>
 
 			<div className="acciones">
-				<button type="button" className="btn btn-primario">
+				<button type="button" className="btn btn-primario" onClick={() => selectTask(task)}>
 					Edit
 				</button>
 				<button

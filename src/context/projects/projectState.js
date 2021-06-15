@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import projectContext from './projectContext';
 import projectReducer from './projectReducer';
+import { v4 as uuidv4 } from 'uuid';
 import {
 	PROJECT_FORM,
 	GET_PROJECT,
@@ -9,7 +10,6 @@ import {
 	ACTUAL_PROJECT,
 	DELETE_PROJECT
 } from '../..//types';
-import { v4 as uuidv4 } from 'uuid';
 
 const ProjectState = (props) => {
 	const projects = [
