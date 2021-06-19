@@ -39,6 +39,16 @@ const NewAccount = () => {
 			showAlert('All fields are required', 'alerta-error');
 			return;
 		}
+
+		// Validate Password{
+		if (password.length < 6) {
+			showAlert('The password must be minimum 6 characters', 'alerta-error');
+			return;
+		}
+		if (password !== confirm) {
+			showAlert('Passwords do not match', 'alerta-error');
+			return;
+		}
 	};
 	return (
 		<div className="form-usuario">
