@@ -1,11 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AlertContext from '../../context/alerts/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
 const NewAccount = () => {
-	// Context.
+	// Alert Context.
 	const alertContext = useContext(AlertContext);
 	const { alert, showAlert } = alertContext;
+
+	// Auth Context.
+	const authContext = useContext(AuthContext);
+	const { registerUser } = authContext;
 
 	// State
 	const [user, setUser] = useState({
@@ -40,7 +45,7 @@ const NewAccount = () => {
 			return;
 		}
 
-		// Validate Password{
+		// Validate Password
 		if (password.length < 6) {
 			showAlert('The password must be minimum 6 characters', 'alerta-error');
 			return;
@@ -49,6 +54,9 @@ const NewAccount = () => {
 			showAlert('Passwords do not match', 'alerta-error');
 			return;
 		}
+
+		// Post new user.
+		registerUser(name, password, email);
 	};
 	return (
 		<div className="form-usuario">
