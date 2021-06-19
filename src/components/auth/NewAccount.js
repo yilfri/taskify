@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import AlertContext from '../../context/alerts/alertContext';
 
 const NewAccount = () => {
+	// Context.
+	const alertContext = useContext(AlertContext);
+	const { alert, showAlert } = alertContext;
+
 	// State
 	const [user, setUser] = useState({
 		name: '',
@@ -20,12 +25,28 @@ const NewAccount = () => {
 			[e.target.name]: e.target.value
 		});
 	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		// Validate form not empty
+		if (
+			name.trim() === '' ||
+			email.trim() === '' ||
+			password.trim() === '' ||
+			confirm.trim() === ''
+		) {
+			showAlert('All fields are required', 'alerta-error');
+			return;
+		}
+	};
 	return (
 		<div className="form-usuario">
+			{alert ? <div className={`alerta ${alert.category}`}>{alert.msg}</div> : null}
 			<div className="contenedor-form sombra-dark">
 				<h1>Sign In</h1>
 
-				<form>
+				<form onSubmit={handleSubmit}>
 					<div className="campo-form">
 						<label htmlFor="name">Name</label>
 						<input
