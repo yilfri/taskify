@@ -15,3 +15,7 @@ export const STATE_TASK = 'STATE_TASK';
 export const ACTUAL_TASK = 'ACTUAL_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const CLEAN_TASK = 'CLEAN_TASK';
+
+/* TYPE ALERT CONTEXT */
+export const SHOW_ALERT = 'SHOW_ALERT';
+export const HIDE_ALERT = 'HIDE_ALERT';
