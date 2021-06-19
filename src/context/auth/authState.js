@@ -28,15 +28,20 @@ const AuthState = (props) => {
 	const registerUser = async (data) => {
 		try {
 			const response = await axiosClient.post('/api/users', data);
-			console.log(response);
+			console.log(response.data);
 
 			dispatch({
-				REGISTRATION_SUCCESFUL
+				type: REGISTRATION_SUCCESFUL,
+				payload: response.data
 			});
 		} catch (error) {
-			console.log(error);
+			const alert = {
+				msg: error.response.data.msg,
+				category: 'alerta-error'
+			};
 			dispatch({
-				type: REGISTRATION_ERROR
+				type: REGISTRATION_ERROR,
+				payload: alert
 			});
 		}
 	};

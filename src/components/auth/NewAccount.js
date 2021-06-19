@@ -56,7 +56,7 @@ const NewAccount = () => {
 		}
 
 		// Post new user.
-		registerUser(name, password, email);
+		registerUser({ name, password, email });
 	};
 	return (
 		<div className="form-usuario">
