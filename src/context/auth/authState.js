@@ -81,7 +81,6 @@ const AuthState = (props) => {
 			//Getting user.
 			authenticatedUser();
 		} catch (error) {
-			console.log(error.response.data.msg);
 			const alert = {
 				msg: error.response.data.msg,
 				category: 'alerta-error'
@@ -101,7 +100,8 @@ const AuthState = (props) => {
 				user: state.user,
 				message: state.message,
 				registerUser,
-				loginUser
+				loginUser,
+				authenticatedUser
 			}}
 		>
 			{props.children}
