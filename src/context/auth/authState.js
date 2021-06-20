@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
 import axiosClient from '../../config/axios';
+import tokenAuth from '../../config/tokenAuth';
 
 import {
 	REGISTRATION_SUCCESFUL,
@@ -34,6 +35,9 @@ const AuthState = (props) => {
 				type: REGISTRATION_SUCCESFUL,
 				payload: response.data
 			});
+
+			//Getting user.
+			authenticatedUser();
 		} catch (error) {
 			const alert = {
 				msg: error.response.data.msg,
@@ -43,17 +47,22 @@ const AuthState = (props) => {
 				type: REGISTRATION_ERROR,
 				payload: alert
 			});
-
-			//Getting user.
-			authenticatedUser();
 		}
 	};
 
 	const authenticatedUser = async () => {
+		const token = localStorage.getItem('token');
+		if (token) {
+			tokenAuth(token);
+		}
 		try {
-			const response = await axiosClient.get('/api/user');
-			console.log(response);
+			const response = await axiosClient.get('/api/auth');
+			dispatch({
+				type: GET_USER,
+				payload: response.data.user
+			});
 		} catch (error) {
+			console.log(error.response);
 			dispatch({
 				type: LOGIN_ERROR
 			});
