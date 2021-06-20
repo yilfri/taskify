@@ -16,13 +16,15 @@ export default (state, action) => {
 			return {
 				...state,
 				auth: true,
-				message: null
+				message: null,
+				loading: false
 			};
 		case GET_USER:
 			return {
 				...state,
 				auth: true,
-				user: action.payload
+				user: action.payload,
+				loading: false
 			};
 		case LOG_OUT:
 		case LOGIN_ERROR:
@@ -33,7 +35,8 @@ export default (state, action) => {
 				token: null,
 				user: null,
 				auth: null,
-				message: action.payload
+				message: action.payload,
+				loading: false
 			};
 		default:
 			return state;
