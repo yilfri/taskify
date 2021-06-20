@@ -43,6 +43,20 @@ const AuthState = (props) => {
 				type: REGISTRATION_ERROR,
 				payload: alert
 			});
+
+			//Getting user.
+			authenticatedUser();
+		}
+	};
+
+	const authenticatedUser = async () => {
+		try {
+			const response = await axiosClient.get('/api/user');
+			console.log(response);
+		} catch (error) {
+			dispatch({
+				type: LOGIN_ERROR
+			});
 		}
 	};
 
