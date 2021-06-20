@@ -92,6 +92,12 @@ const AuthState = (props) => {
 		}
 	};
 
+	// Log Out.
+	const logout = () => {
+		dispatch({
+			type: LOG_OUT
+		});
+	};
 	return (
 		<AuthContext.Provider
 			value={{
@@ -101,7 +107,8 @@ const AuthState = (props) => {
 				message: state.message,
 				registerUser,
 				loginUser,
-				authenticatedUser
+				authenticatedUser,
+				logout
 			}}
 		>
 			{props.children}
