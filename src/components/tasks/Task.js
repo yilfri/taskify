@@ -7,15 +7,15 @@ const Task = ({ task }) => {
 	const projectsContext = useContext(projectContext);
 	const { project } = projectsContext;
 
-	const [actualProject] = project;
-
 	// Extract Task from Context.
 	const tasksContext = useContext(TaskContext);
 	const { deleteTask, getTasks, updateStateTask, saveActualTask } = tasksContext;
 
+	const [actualProject] = project;
+
 	// Handle Events
 	const handleClickDeleteTask = (id) => {
-		deleteTask(id);
+		deleteTask(id, actualProject._id);
 		getTasks(actualProject.id);
 	};
 
@@ -56,7 +56,7 @@ const Task = ({ task }) => {
 				<button
 					type="button"
 					className="btn btn-secundario"
-					onClick={() => handleClickDeleteTask(task.id)}
+					onClick={() => handleClickDeleteTask(task._id)}
 				>
 					Delete
 				</button>

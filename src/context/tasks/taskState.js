@@ -25,11 +25,8 @@ const TaskState = (props) => {
 
 	// Functions CRUD
 	const getTasks = async (project) => {
-		console.log(project);
 		try {
 			const response = await axiosClient.get('/api/tasks', { params: { project } });
-
-			console.log(response);
 
 			dispatch({
 				type: TASKS_PROJECT,
@@ -61,11 +58,16 @@ const TaskState = (props) => {
 		});
 	};
 
-	const deleteTask = (id) => {
-		dispatch({
-			type: DELETE_TASK,
-			payload: id
-		});
+	const deleteTask = async (id, project) => {
+		try {
+			await axiosClient.delete(`/api/tasks/${id}`, { params: { project } });
+			dispatch({
+				type: DELETE_TASK,
+				payload: id
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const updateStateTask = (task) => {
