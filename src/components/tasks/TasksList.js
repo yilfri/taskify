@@ -21,8 +21,8 @@ const TasksList = () => {
 
 	// Handle Events.
 
-	const handleClickDeleteProject = (project) => {
-		deleteProject(actualProject.id);
+	const handleClickDeleteProject = () => {
+		deleteProject(actualProject._id);
 	};
 	return (
 		<>

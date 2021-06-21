@@ -9,7 +9,8 @@ import {
 	ADD_PROJECT,
 	VALIDATE_FORM,
 	ACTUAL_PROJECT,
-	DELETE_PROJECT
+	DELETE_PROJECT,
+	ERROR_PROJECT
 } from '../..//types';
 
 const ProjectState = (props) => {
@@ -17,7 +18,8 @@ const ProjectState = (props) => {
 		projects: [],
 		form: false,
 		errorform: false,
-		project: null
+		project: null,
+		message: null
 	};
 
 	// Reducer
@@ -40,7 +42,14 @@ const ProjectState = (props) => {
 				payload: response.data.projects
 			});
 		} catch (error) {
-			console.log(error);
+			const alert = {
+				msg: 'Something has gone wrong',
+				category: 'alerta-error'
+			};
+			dispatch({
+				type: ERROR_PROJECT,
+				payload: alert
+			});
 		}
 	};
 
@@ -53,7 +62,14 @@ const ProjectState = (props) => {
 				payload: response.data
 			});
 		} catch (error) {
-			console.log(error.response);
+			const alert = {
+				msg: 'Something has gone wrong',
+				category: 'alerta-error'
+			};
+			dispatch({
+				type: ERROR_PROJECT,
+				payload: alert
+			});
 		}
 	};
 
@@ -70,11 +86,24 @@ const ProjectState = (props) => {
 		});
 	};
 
-	const deleteProject = (projectId) => {
-		dispatch({
-			type: DELETE_PROJECT,
-			payload: projectId
-		});
+	const deleteProject = async (projectId) => {
+		try {
+			await axiosClient.delete(`/api/projects/${projectId}`);
+
+			dispatch({
+				type: DELETE_PROJECT,
+				payload: projectId
+			});
+		} catch (error) {
+			const alert = {
+				msg: 'Something has gone wrong',
+				category: 'alerta-error'
+			};
+			dispatch({
+				type: ERROR_PROJECT,
+				payload: alert
+			});
+		}
 	};
 
 	return (
@@ -84,6 +113,7 @@ const ProjectState = (props) => {
 				form: state.form,
 				errorform: state.errorform,
 				project: state.project,
+				message: state.message,
 				showForm,
 				getProjects,
 				addProject,

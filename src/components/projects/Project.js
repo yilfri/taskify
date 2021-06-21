@@ -13,8 +13,8 @@ const Project = ({ project }) => {
 
 	// Handle Events.
 	const handleSubmitActualProject = () => {
-		actualProject(project.id);
-		getTasks(project.id);
+		actualProject(project._id);
+		getTasks(project._id);
 	};
 
 	return (
