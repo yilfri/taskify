@@ -12,14 +12,18 @@ const Project = ({ project }) => {
 	const { getTasks } = tasksContext;
 
 	// Handle Events.
-	const handleSubmitActualProject = () => {
-		actualProject(project._id);
-		getTasks(project._id);
+	const handleSubmitActualProject = (id) => {
+		actualProject(id);
+		getTasks(id);
 	};
 
 	return (
 		<li>
-			<button type="submit" className="btn btn-blank" onClick={handleSubmitActualProject}>
+			<button
+				type="submit"
+				className="btn btn-blank"
+				onClick={() => handleSubmitActualProject(project._id)}
+			>
 				{project.name}
 			</button>
 		</li>
