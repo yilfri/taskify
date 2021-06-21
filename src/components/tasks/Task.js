@@ -9,7 +9,7 @@ const Task = ({ task }) => {
 
 	// Extract Task from Context.
 	const tasksContext = useContext(TaskContext);
-	const { deleteTask, getTasks, updateStateTask, saveActualTask } = tasksContext;
+	const { deleteTask, getTasks, updateTask, saveActualTask } = tasksContext;
 
 	const [actualProject] = project;
 
@@ -26,7 +26,7 @@ const Task = ({ task }) => {
 			task.state = true;
 		}
 
-		updateStateTask(task);
+		updateTask(task);
 	};
 
 	const selectTask = (task) => {

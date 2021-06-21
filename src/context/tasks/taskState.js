@@ -7,7 +7,6 @@ import {
 	ADD_TASK,
 	DELETE_TASK,
 	VALIDATE_TASK,
-	STATE_TASK,
 	ACTUAL_TASK,
 	UPDATE_TASK,
 	CLEAN_TASK
@@ -33,7 +32,7 @@ const TaskState = (props) => {
 				payload: response.data.tasks
 			});
 		} catch (error) {
-			console.log(error);
+			/* console.log(error); */
 		}
 	};
 
@@ -70,23 +69,22 @@ const TaskState = (props) => {
 		}
 	};
 
-	const updateStateTask = (task) => {
-		dispatch({
-			type: STATE_TASK,
-			payload: task
-		});
+	const updateTask = async (task) => {
+		try {
+			const response = await axiosClient.put(`api/tasks/${task._id}`, task);
+
+			dispatch({
+				type: UPDATE_TASK,
+				payload: response.data.task
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const saveActualTask = (task) => {
 		dispatch({
 			type: ACTUAL_TASK,
-			payload: task
-		});
-	};
-
-	const updateTask = (task) => {
-		dispatch({
-			type: UPDATE_TASK,
 			payload: task
 		});
 	};
@@ -106,7 +104,6 @@ const TaskState = (props) => {
 				addTask,
 				validateTask,
 				deleteTask,
-				updateStateTask,
 				saveActualTask,
 				updateTask,
 				cleanTask
