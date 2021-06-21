@@ -13,12 +13,6 @@ import {
 } from '../..//types';
 
 const ProjectState = (props) => {
-	const projects = [
-		{ id: 1, name: 'Ecommerce' },
-		{ id: 2, name: 'Intranet' },
-		{ id: 3, name: 'Marketing' },
-		{ id: 4, name: 'Development' }
-	];
 	const initialState = {
 		projects: [],
 		form: false,
@@ -36,17 +30,24 @@ const ProjectState = (props) => {
 		});
 	};
 
-	const getProjects = () => {
-		dispatch({
-			type: GET_PROJECT,
-			payload: projects
-		});
+	const getProjects = async () => {
+		try {
+			const response = await axiosClient.get('/api/projects');
+
+			// Getting Projects.
+			dispatch({
+				type: GET_PROJECT,
+				payload: response.data.projects
+			});
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const addProject = async (project) => {
 		try {
 			const response = await axiosClient.post('/api/projects', project);
-			// Creating project.
+			// Creating projects.
 			dispatch({
 				type: ADD_PROJECT,
 				payload: response.data
