@@ -81,10 +81,11 @@ const AuthState = (props) => {
 			//Getting user.
 			authenticatedUser();
 		} catch (error) {
-			const alert = {
+			let alert = {
 				msg: error.response.data.msg,
 				category: 'alerta-error'
 			};
+
 			dispatch({
 				type: LOGIN_ERROR,
 				payload: alert

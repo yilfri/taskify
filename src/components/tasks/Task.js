@@ -20,10 +20,10 @@ const Task = ({ task }) => {
 	};
 
 	const changeState = (task) => {
-		if (task.state) {
-			task.state = false;
+		if (task.status) {
+			task.status = false;
 		} else {
-			task.state = true;
+			task.status = true;
 		}
 
 		updateTask(task);
@@ -38,7 +38,7 @@ const Task = ({ task }) => {
 			<p>{task.name}</p>
 
 			<div className="estado">
-				{task.state ? (
+				{task.status ? (
 					<button type="button" className="completo" onClick={() => changeState(task)}>
 						Completed
 					</button>
